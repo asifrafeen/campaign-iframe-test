@@ -38,6 +38,10 @@ export const menuItems: MenuItem[] = [
   createMenuItem('campaign', 'CAMPAIGN', '/campaign', 'Presentation', {
     isIntegrated: true,
   }),
+  createMenuItem('campaign_sso', 'CAMPAIGN_SSO', '/campaign-sso', 'ExternalLink', {
+    isIntegrated: true,
+    externalAction: 'campaign_sso',
+  }),
   createMenuItem('iam', 'IAM', '/identity-management', 'Users', {
     isIntegrated: true,
   }),

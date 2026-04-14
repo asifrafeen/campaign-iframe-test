@@ -3,7 +3,7 @@ import { menuItems } from '../constant/sidebar-menu';
 describe('menuItems', () => {
   test('should have the correct structure', () => {
     expect(Array.isArray(menuItems)).toBe(true);
-    expect(menuItems.length).toBe(15);
+    expect(menuItems.length).toBe(16);
   });
 
   test('each menu item should have required properties', () => {
@@ -54,6 +54,18 @@ describe('menuItems', () => {
       expect(campaignItem.path).toBe('/campaign');
       expect(campaignItem.icon).toBe('Presentation');
       expect(campaignItem.isIntegrated).toBe(true);
+    }
+  });
+
+  test('Campaign SSO item should be integrated and have externalAction', () => {
+    const ssoItem = menuItems.find((item) => item.id === 'campaign_sso');
+    expect(ssoItem).toBeDefined();
+    if (ssoItem) {
+      expect(ssoItem.name).toBe('CAMPAIGN_SSO');
+      expect(ssoItem.path).toBe('/campaign-sso');
+      expect(ssoItem.icon).toBe('ExternalLink');
+      expect(ssoItem.isIntegrated).toBe(true);
+      expect(ssoItem.externalAction).toBe('campaign_sso');
     }
   });
 

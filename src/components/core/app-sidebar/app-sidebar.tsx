@@ -7,6 +7,7 @@ import { getSidebarStyle } from '@/lib/utils/sidebar-utils';
 import { useFilteredMenu } from '@/hooks/use-filtered-menu';
 import { LogoSection, MenuSection } from '@/components/core';
 import { menuItems } from '@/constant/sidebar-menu';
+import { useCampaignSso } from '@/modules/campaign/hooks/use-campaign-sso';
 
 /**
  * AppSidebar Component
@@ -52,6 +53,12 @@ export const AppSidebar = () => {
 
   const filteredMenuItems = useFilteredMenu(menuItems);
 
+  const { handleClick: handleCampaignSso } = useCampaignSso();
+
+  const handleExternalAction = (key: string) => {
+    if (key === 'campaign_sso') handleCampaignSso();
+  };
+
   const integratedMenuItems = filteredMenuItems.filter((item) => item.isIntegrated === true);
   const designOnlyMenuItems = filteredMenuItems.filter((item) => item.isIntegrated !== true);
 
@@ -89,6 +96,7 @@ export const AppSidebar = () => {
           showText={open || isMobile}
           pathname={pathname}
           onItemClick={isMobile ? () => setOpenMobile(false) : undefined}
+          onExternalAction={handleExternalAction}
         />
 
         <MenuSection
@@ -97,6 +105,7 @@ export const AppSidebar = () => {
           showText={open || isMobile}
           pathname={pathname}
           onItemClick={isMobile ? () => setOpenMobile(false) : undefined}
+          onExternalAction={handleExternalAction}
         />
       </SidebarContent>
     </Sidebar>

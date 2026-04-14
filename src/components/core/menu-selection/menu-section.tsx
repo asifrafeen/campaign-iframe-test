@@ -8,6 +8,7 @@ interface MenuSectionProps {
   showText: boolean;
   pathname: string;
   onItemClick?: () => void;
+  onExternalAction?: (key: string) => void;
 }
 
 export const MenuSection = ({
@@ -16,6 +17,7 @@ export const MenuSection = ({
   showText,
   pathname,
   onItemClick,
+  onExternalAction,
 }: Readonly<MenuSectionProps>) => {
   return (
     <>
@@ -32,6 +34,7 @@ export const MenuSection = ({
             showText={showText}
             isActive={pathname.includes(item.path)}
             onClick={onItemClick}
+            onExternalAction={onExternalAction}
           />
         </SidebarMenu>
       ))}

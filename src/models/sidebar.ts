@@ -23,7 +23,9 @@ export interface MenuItem {
     | 'Folder'
     | 'ReceiptText'
     | 'MessageSquareText';
+    | 'ExternalLink';
   children?: MenuItem[];
+  externalAction?: string;
 
   roles?: string | string[];
   permissions?: string | string[];
@@ -37,4 +39,5 @@ export interface SidebarMenuItemProps {
   showText: boolean;
   isActive: boolean;
   onClick?: () => void;
+  onExternalAction?: (key: string) => void;
 }

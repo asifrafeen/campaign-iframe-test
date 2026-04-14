@@ -23,6 +23,7 @@ export const SidebarMenuItemComponent = ({
   item,
   showText,
   onClick,
+  onExternalAction,
 }: Readonly<SidebarMenuItemProps>) => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
@@ -70,6 +71,25 @@ export const SidebarMenuItemComponent = ({
       onClick();
     }
   };
+
+  if (item.externalAction) {
+    const actionKey = item.externalAction;
+    return (
+      <SidebarMenuItem>
+        <SidebarMenuButton asChild>
+          <button
+            className="flex items-center w-full cursor-pointer"
+            onClick={() => onExternalAction?.(actionKey)}
+          >
+            {renderIcon(item.icon as MenuIconName)}
+            <span className={`ml-3 truncate ${!showText && 'hidden'} text-high-emphasis text-base`}>
+              {t(item.name)}
+            </span>
+          </button>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    );
+  }
 
   if (hasChildren) {
     return (
